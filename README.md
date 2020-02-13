@@ -9,6 +9,7 @@ pip install -r requirements.txt
 You will also need to edit main.py to provide your own Discord user ID and token.
 
 To get your user ID, go to User Settings -> Appearance and enable Developer Mode under "Advanced".
+
 To get your user token, watch this video (not mine)
 https://youtu.be/tI1lzqzLQCs
 
