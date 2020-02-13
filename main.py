@@ -129,24 +129,26 @@ async def on_message(message):
 
 	if message.guild.id in [channel[0] for channel in registry["input"]] and message.channel.id in [channel[1] for channel in registry["input"]]:
 		if len(message.attachments) > 0:
-			url=message.attachments[0].url
+			for attachment in message.attachments:
+				url=attachment[0].url
 			
-			for registered_output_channel in registry["output"]:
-				guild=client.get_guild(registered_output_channel[0])
-				channel=guild.get_channel(registered_output_channel[1])
+				for registered_output_channel in registry["output"]:
+					guild=client.get_guild(registered_output_channel[0])
+					channel=guild.get_channel(registered_output_channel[1])
 
-				image=discord.Embed()
-				image.set_image(url=url)
-				await channel.send("%s@%s: %s"%(message.channel.name, message.guild.name, message.author.display_name), embed=image)
+					image=discord.Embed()
+					image.set_image(url=url)
+					await channel.send("%s@%s: %s"%(message.channel.name, message.guild.name, message.author.display_name), embed=image)
 
 		else:
 			urls = extractor.find_urls(message.content)
 			
 			if len(urls)>0:
-				for registered_output_channel in registry["output"]:
-					guild=client.get_guild(registered_output_channel[0])
-					channel=guild.get_channel(registered_output_channel[1])
+				for url in urls:
+					for registered_output_channel in registry["output"]:
+						guild=client.get_guild(registered_output_channel[0])
+						channel=guild.get_channel(registered_output_channel[1])
 				
-					await channel.send("%s@%s: %s - %s"%(message.channel.name, message.guild.name, message.author.display_name, urls[0]))
+						await channel.send("%s@%s: %s - %s"%(message.channel.name, message.guild.name, message.author.display_name, url))
 
 client.run(token, bot=False)
