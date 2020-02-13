@@ -4,8 +4,7 @@ import urlextract
 
 extractor = urlextract.URLExtract()
 
-token = "" #your discord user token
-my_id = 0 #your discord user id
+from auth import token, my_id
 
 try:
 	registry_file = open("registry.pickle", "rb")
@@ -71,7 +70,7 @@ async def on_message(message):
 			for registered_output_channel in registry["output"]:
 				server=client.get_guild(registered_output_channel[0])
 				channel=server.get_channel(registered_output_channel[1])
-				await message.channel.send(str(c)+"%s@%s"%(channel.name, server.name))
+				await message.channel.send(str(c)+": %s@%s"%(channel.name, server.name))
 				c+=1
 			
 			await message.channel.send("\nInput channels:")
@@ -79,7 +78,7 @@ async def on_message(message):
 			for registered_input_channel in registry["input"]:
 				server=client.get_guild(registered_input_channel[0])
 				channel=server.get_channel(registered_input_channel[1])
-				await message.channel.send(str(c)+"%s@%s"%(channel.name, server.name))
+				await message.channel.send(str(c)+": %s@%s"%(channel.name, server.name))
 				c+=1
 		
 			await message.channel.send("---")
@@ -107,6 +106,23 @@ async def on_message(message):
 					registry_file.close()
 
 					await message.channel.send("Registered %s@%s as input channel."%(channel.name, guild.name))
+				
+			except ValueError:
+				await message.channel.send("Insufficient arguments")
+
+		elif message.content.startswith("!unregister"):
+			try:
+				command, put, channel_id=message.content.split(" ")
+				registered_channel=registry[put][int(channel_id)]
+				
+				guild=client.get_guild(registered_channel[0])
+				channel=guild.get_channel(registered_channel[1])
+				await message.channel.send("Removed %s@%s from registered %s channels"%(channel.name, guild.name, put))
+				registry[put].pop(int(channel_id))
+
+				registry_file = open("registry.pickle", "wb")
+				pickle.dump(registry, registry_file)
+				registry_file.close()
 				
 			except ValueError:
 				await message.channel.send("Insufficient arguments")
