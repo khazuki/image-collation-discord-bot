@@ -32,7 +32,7 @@ async def on_message(message):
 			await message.channel.send("ICB exiting")
 			exit()
 		
-		elif message.content == "!help":
+		elif message.content == "!icb_help":
 			await message.channel.send('''
 !list_servers - Lists all servers you are on, and their bot-assigned ID.
 !list_channels id - List all channels on server 'id'. Example '!list_channels 5' lists all channels on server 5.
