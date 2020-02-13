@@ -6,6 +6,8 @@ This bot runs on python 3, and has requirements which can be installed via pip, 
 
 pip install -r requirements.txt
 
-Run the bot from the command line. Type "!icb_help" in any discord channel (preferably one on your private server) for a list of commands.
+You will also need to edit main.py to provide your own Discord user token and ID. Tutorials on how to find these can be found online.
+
+Run the bot from the command line. All bot commands are given through Discord, preferably in a channel on your own private server.
 
 DO NOT MAKE A CHANNEL BOTH AN INPUT AND AN OUTPUT. This will do exactly what you think it will do.
