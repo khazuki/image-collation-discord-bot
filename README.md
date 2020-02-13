@@ -6,7 +6,11 @@ This bot runs on python 3, and has requirements which can be installed via pip, 
 
 pip install -r requirements.txt
 
-You will also need to edit main.py to provide your own Discord user token and ID. Tutorials on how to find these can be found online.
+You will also need to edit main.py to provide your own Discord user ID and token.
+
+To get your user ID, go to User Settings -> Appearance and enable Developer Mode under "Advanced".
+To get your user token, watch this video (not mine)
+https://youtu.be/tI1lzqzLQCs
 
 Run the bot from the command line. All bot commands are given through Discord, preferably in a channel on your own private server.
 
