@@ -99,13 +99,18 @@ async def on_message(message):
 					await message.channel.send("Registered this channel as output channel.")
 
 				elif command == "!register_input":
-					registry["input"].append([guild.id, channel.id])
+					for registered_channel in registry["output"]:
+						if guild.id == registered_channel[0] and channel.id == registered_channel[1]:
+							await message.channel.send("Cannot register an output channel for input. Would destroy the Earth.")
+							break
+					else:
+						registry["input"].append([guild.id, channel.id])
 
-					registry_file = open("registry.pickle", "wb")
-					pickle.dump(registry, registry_file)
-					registry_file.close()
+						registry_file = open("registry.pickle", "wb")
+						pickle.dump(registry, registry_file)
+						registry_file.close()
 
-					await message.channel.send("Registered %s@%s as input channel."%(channel.name, guild.name))
+						await message.channel.send("Registered %s@%s as input channel."%(channel.name, guild.name))
 				
 			except ValueError:
 				await message.channel.send("Insufficient arguments")
@@ -128,27 +133,28 @@ async def on_message(message):
 				await message.channel.send("Insufficient arguments")
 
 	if message.guild.id in [channel[0] for channel in registry["input"]] and message.channel.id in [channel[1] for channel in registry["input"]]:
+		#attachments
 		if len(message.attachments) > 0:
-			for attachment in message.attachments:
-				url=attachment[0].url
-			
-				for registered_output_channel in registry["output"]:
-					guild=client.get_guild(registered_output_channel[0])
-					channel=guild.get_channel(registered_output_channel[1])
+			for registered_output_channel in registry["output"]:
+				guild=client.get_guild(registered_output_channel[0])
+				channel=guild.get_channel(registered_output_channel[1])
 
-					image=discord.Embed()
-					image.set_image(url=url)
-					await channel.send("%s@%s: %s"%(message.channel.name, message.guild.name, message.author.display_name), embed=image)
+				await channel.send("%s@%s:%s - %s"%(message.author.name, message.guild.name, message.channel.name, message.jump_url))
 
+				for attachment in message.attachments:
+					f = await attachment.to_file()
+					await channel.send(file=f)
+
+		#links
 		else:
 			urls = extractor.find_urls(message.content)
 			
 			if len(urls)>0:
-				for url in urls:
-					for registered_output_channel in registry["output"]:
-						guild=client.get_guild(registered_output_channel[0])
-						channel=guild.get_channel(registered_output_channel[1])
-				
-						await channel.send("%s@%s: %s - %s"%(message.channel.name, message.guild.name, message.author.display_name, url))
+				for registered_output_channel in registry["output"]:
+					guild=client.get_guild(registered_output_channel[0])
+					channel=guild.get_channel(registered_output_channel[1])
+
+					await channel.send("%s@%s - %s (<%s>)"%(message.author.name, message.guild.name, message.channel.name, message.jump_url))
+					await channel.send(" ".join(urls))
 
 client.run(token, bot=False)
