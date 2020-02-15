@@ -9,11 +9,17 @@ Run setup.py to install the required libraries.
 Then run bot.py to start the bot.
 
 "!list_servers" will list all discord servers you are on, with an id number for each.
+
 "!list_channels id" will list all channels for the server with that id, with an id number for each.
+
 "!register_input serverid channelid" will register the chosen channel for input.
+
 "!register_output serverid channelid" will register the chosen channel for output. All attachments and links from all input channels will be reposted to all output channels.
+
 "!list_registered" lists all output and input channels you have registered, with an id number for each.
+
 "!unregister output id"/"!unregister input id" unregisters the chosen channel.
 
 "!icb_test" will send "ICB test received" via your account if the bot is running correctly.
+
 "!icb_exit" shuts down the bot.
