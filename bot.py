@@ -37,11 +37,15 @@ async def on_message(message):
 		
 		elif message.content == "!icb_help":
 			await message.channel.send('''
-!list_servers - Lists all servers you are on, and their bot-assigned ID.
-!list_channels id - List all channels on server 'id'. Example '!list_channels 5' lists all channels on server 5.
-!list_registered - Lists all registered output and input channels.
-!register_output server_id channel_id - Registers a channel for output. Only send output to your own private server.
-!register_input server_id channel_id - Registers a channel for input.
+"!list_servers" will list all discord servers you are on, with an id number for each.
+"!list_channels id" will list all channels for the server with that id, with an id number for each.
+"!register_input serverid channelid" will register the chosen channel for input.
+"!register_output serverid channelid" will register the chosen channel for output. All attachments and links from all input channels will be reposted to all output channels.
+"!list_registered" lists all output and input channels you have registered, with an id number for each.
+"!unregister output id"/"!unregister input id" unregisters the chosen channel.
+"!icb_test" will send "ICB test received" via your account if the bot is running correctly.
+"!icb_help" gives you this same information.
+"!icb_exit" shuts down the bot.
 			''')
 		
 		elif message.content == "!list_servers":
