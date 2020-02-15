@@ -1,18 +1,19 @@
-This is the Image Collation Bot for Discord. This is a "self bot", meaning it runs on your own account, which is against Discord TOS. If you get reported for using it, your account will be banned. However, if you set this bot to only post to a channel on your own private server, no one will ever know.
+This is the Image Collation Bot for Discord. This bot allows you to register "input" channels, and it reposts all attachments (images, videos, etc) and links to a registered "output" channel. This is useful if you are using several discord servers as image feeds, and want all of them collected in one place.
 
-What this bot does is collect images from a set of registered channels and repost them to a channel of your choosing. This is useful if you are using several discord servers only as image feeds, and don't want all of them collected in one place.
+This is a "self bot", meaning it runs on your own account, rather than on a bot account, which is against Discord TOS. If you get reported for using it, your account will be banned. However, if you set this bot to only post to a channel on your own private server, it will go entirely unnoticed.
 
-This bot runs on python 3, and has requirements which can be installed via pip, so you'll need to install those.
+You need python and pip installed to use this bot. You also need to be able to find your discord id and user token.
 
-pip install -r requirements.txt
+Run setup.py to install the required libraries.
 
-You will also need to edit main.py to provide your own Discord user ID and token.
+Then run bot.py to start the bot.
 
-To get your user ID, go to User Settings -> Appearance and enable Developer Mode under "Advanced".
+"!list_servers" will list all discord servers you are on, with an id number for each.
+"!list_channels id" will list all channels for the server with that id, with an id number for each.
+"!register_input serverid channelid" will register the chosen channel for input.
+"!register_output serverid channelid" will register the chosen channel for output. All attachments and links from all input channels will be reposted to all output channels.
+"!list_registered" lists all output and input channels you have registered, with an id number for each.
+"!unregister output id"/"!unregister input id" unregisters the chosen channel.
 
-To get your user token, watch this video (not mine)
-https://youtu.be/tI1lzqzLQCs
-
-Run the bot from the command line. All bot commands are given through Discord, preferably in a channel on your own private server.
-
-DO NOT MAKE A CHANNEL BOTH AN INPUT AND AN OUTPUT. This will do exactly what you think it will do.
+"!icb_test" will send "ICB test received" via your account if the bot is running correctly.
+"!icb_exit" shuts down the bot.
