@@ -162,11 +162,7 @@ async def on_message(message):
 				guild=client.get_guild(registered_output_channel[0])
 				channel=guild.get_channel(registered_output_channel[1])
 
-				await channel.send("%s@%s:%s - %s"%(message.author.name, message.guild.name, message.channel.name, message.jump_url))
-
-				for attachment in message.attachments:
-					f = await attachment.to_file()
-					await channel.send(file=f)
+				await channel.send("%s@%s:%s - %s"%(message.author.name, message.guild.name, message.channel.name, message.jump_url), files=[await attachment.to_file() for attachment in message.attachments])
 
 		#links
 		else:
