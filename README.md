@@ -8,6 +8,8 @@ Run setup.py to install the required libraries.
 
 Then run bot.py to start the bot.
 
+Because the bot is subject to discord traffic limits, the bot will frequently pause will printing lists of servers/channels/etc. Every list ends with "---"
+
 "!list_servers" will list all discord servers you are on, with an id number for each.
 
 "!list_channels id" will list all channels for the server with that id, with an id number for each.
