@@ -1,4 +1,4 @@
-This is the Image Collation Bot for Discord. This bot allows you to register "input" channels, and it reposts all attachments (images, videos, etc) and links to a registered "output" channel. This is useful if you are using several discord servers as image feeds, and want all of them collected in one place.
+This is the Image Collation Bot for Discord. This bot allows you to register "input" channels, and then reposts all attachments (images, videos, etc) and links to any registered "output" channels. This is useful if you are using several discord servers as image feeds, and want all of them collected in one place.
 
 This is a "self bot", meaning it runs on your own account, rather than on a bot account, which is against Discord TOS. If you get reported for using it, your account will be banned. However, if you set this bot to only post to a channel on your own private server, it will go entirely unnoticed.
 
