@@ -173,7 +173,6 @@ async def on_message(message):
 					guild=client.get_guild(registered_output_channel[0])
 					channel=guild.get_channel(registered_output_channel[1])
 
-					await channel.send("%s@%s - %s (<%s>)"%(message.author.name, message.guild.name, message.channel.name, message.jump_url))
-					await channel.send(" ".join(urls))
+					await channel.send("%s@%s - %s (<%s>)\n%s"%(message.author.name, message.guild.name, message.channel.name, message.jump_url, "\n".join(urls)))
 
 client.run(token, bot=False)
