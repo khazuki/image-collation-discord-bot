@@ -22,4 +22,6 @@ Then run bot.py to start the bot.
 
 "!icb_test" will send "ICB test received" via your account if the bot is running correctly.
 
+"!icb_help" gives you this same information.
+
 "!icb_exit" shuts down the bot.
