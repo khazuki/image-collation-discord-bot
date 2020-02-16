@@ -51,7 +51,7 @@ async def on_message(message):
 		elif message.content == "!list_servers":
 			c=0
 			for guild in client.guilds:
-				await message.channel.send(str(c)+": "+guild.name)
+				await message.channel.send(str(c)+": "+guild.name+" - <https://discordapp.com/channels/"+str(guild.id)+"/>")
 				c+=1
 				
 			await message.channel.send("---")
@@ -167,12 +167,13 @@ async def on_message(message):
 		#links
 		else:
 			urls = extractor.find_urls(message.content)
+			output_urls = "\n".join([url for url in urls if "discordapp.com/channels/" not in url])
 			
-			if len(urls)>0:
+			if output_urls!="":
 				for registered_output_channel in registry["output"]:
 					guild=client.get_guild(registered_output_channel[0])
 					channel=guild.get_channel(registered_output_channel[1])
 
-					await channel.send("[%s@%s:%s] - <%s>\n%s"%(message.author.name, message.guild.name, message.channel.name, message.jump_url, "\n".join(urls)))
+					await channel.send("[%s@%s:%s] - <%s>\n%s"%(message.author.name, message.guild.name, message.channel.name, message.jump_url, output_urls))
 
 client.run(token, bot=False)
