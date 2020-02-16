@@ -78,7 +78,7 @@ async def on_message(message):
 			for registered_output_channel in registry["output"]:
 				guild=client.get_guild(registered_output_channel[0])
 				channel=guild.get_channel(registered_output_channel[1])
-				await message.channel.send(str(c)+": %s@%s - https://discordapp.com/channels/%s/%s/"%(channel.name, guild.name, guild.id, channel.id))
+				await message.channel.send(str(c)+": %s@%s - <https://discordapp.com/channels/%s/%s/>"%(channel.name, guild.name, guild.id, channel.id))
 				c+=1
 			
 			await message.channel.send("\nInput channels:")
